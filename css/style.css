@@ -1,0 +1,19 @@
+body{
+    font-family: 'Saira Condensed', sans-serif;
+    width: 0 auto;
+}
+header{
+    width: 100%;
+    text-align: center;
+    
+}
+.Titulo-principal{
+    font-size: 3em;
+}
+
+.tablero{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: cornflowerblue;
+}
