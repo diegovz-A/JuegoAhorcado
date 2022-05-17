@@ -10,10 +10,14 @@ header{
 .Titulo-principal{
     font-size: 3em;
 }
-
+.contenedor{
+    max-width: 1200px;
+    max-height: 800px;
+    margin: 0 auto;
+}
 .tablero{
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     background-color: cornflowerblue;
 }
