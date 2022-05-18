@@ -18,17 +18,21 @@
     <main>
         <section>
             <div class="contenedor">
-                <canvas class="tablero"></canvas>
+                <canvas class="tablero" width="1200" height="800"></canvas>
+                <textarea name="letra" id="letra" cols="30" rows="10" maxlength="1"></textarea>
             </div>
         </section>
-        <label for="nuevaPalabra"></label>
-        <input type="text" name="" id="nuevaPalabra">
-        <label for="nuevaP"></label>
-        <input id="nuevaP" type="button" value="Hola">
+        <section>
+            <label for="nuevaPalabra"></label>
+            <input type="text" name="" id="nuevaPalabra">
+            <label for="nuevaP"></label>
+            <input id="nuevaP" type="button" value="Agregar Palabra">
+        </section>
     </main>
     <footer>
 
     </footer>
-    <script src="js/DibujarTablero.js"></script>
+    <script src="js/AgregarPalabra.js"></script>
+    <script src="js/dibujarEnTablero.js"></script>
 </body>
 </html>
