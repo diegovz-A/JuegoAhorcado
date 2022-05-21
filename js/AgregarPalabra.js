@@ -7,7 +7,7 @@ function palabraSecreta(palabra){
 function agregarPalabra(){
 
     let palabraNueva = document.getElementById("nuevaPalabra").value;
-    var Caracteres = /[A-Z]/g;
+    var Caracteres = /[A-ZÑ]/g;
     var arregloCoincidencias = palabraNueva.match(Caracteres);
 
     const indice1 = palabraNueva.length;

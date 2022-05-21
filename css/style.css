@@ -10,9 +10,34 @@ header{
 .Titulo-principal{
     font-size: 3em;
 }
+
 .contenedor{
     position: relative;
     margin:0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.contenedorLetras{
+    position: relative;
+    display: flex;
+    background-color: red;
+    height: 3em;
+    justify-content: center;
+}
+.contenedorErrores{
+    position: relative;
+    display: flex;
+    background-color: blue;
+    height: 3em;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+}
+.contenedorErrores span{
+    font-size: 2em;
+    letter-spacing: 1em;
 }
 .tablero{
     box-sizing: border-box;
@@ -20,21 +45,16 @@ header{
     height: 100%;
     background-color: cornflowerblue;
 }
-.contenedor > textarea{
-    position:absolute;
-}
-#letra, #letra:focus{
-    resize: none;
-    top: 75%;
-    left:30%;
-    width: 30px;
+
+.letra, .letra:focus{   
+    width: 1em;
     height: 30px;
     border-style: none none solid none;
     border-bottom:2px solid blue;
     background: none;
     font-size: 25px;
-    outline: none;
     text-align: center;
+    margin-right: 1em;
 }
 .ocultar{
     display: none;

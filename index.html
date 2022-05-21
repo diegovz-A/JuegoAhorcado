@@ -16,18 +16,27 @@
         <h1 class="Titulo-principal">Juego del Ahorcado</h1>
     </header>
     <main>
-        <section>
-            <div class="contenedor">
-                <canvas class="tablero" width="1200" height="800"></canvas>
-                <textarea name="letra" id="letra" cols="30" rows="10" maxlength="1"></textarea>
-            </div>
-        </section>
-        <section>
-            <label for="nuevaPalabra"></label>
-            <input type="text" name="" id="nuevaPalabra">
-            <label for="nuevaP"></label>
-            <input id="nuevaP" type="button" value="Agregar Palabra">
-        </section>
+        <div class="contenido">
+            <section>
+                <div class="contenedor">
+                    <canvas class="tablero" width="1200" height="800"></canvas>
+                    <div class="contenedorLetras"></div>
+                    <div class="contenedorErrores"></div>
+                </div>
+            </section>
+            <section class="inicio">
+                <div class="agregarPalabra">
+                    <label for="nuevaPalabra"></label>
+                    <input type="text" name="" id="nuevaPalabra">
+                    <label for="nuevaP"></label>
+                    <input id="nuevaP" type="button" value="Agregar Palabra">
+                </div>
+                <div class="jugar">
+                    <label for="btn-jugar"></label>
+                    <input id="btn-jugar" type="button" value="Jugar">
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
 
