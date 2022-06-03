@@ -13,6 +13,7 @@ function dibujarcabeza(){
     pincel.beginPath();
     pincel.arc(599,130,30,0,2*Math.PI);
     pincel.stroke();
+    pincel.fill();
 }
 function dibujarTronco(){
     pincel.beginPath();
@@ -69,13 +70,3 @@ function dibujoenpantalla(numeroError){
         dibujarBrazoDerecho();}
    
 }
-
-/*
-dibujarSoporte();
-dibujarcabeza();
-dibujarTronco();
-dibujarPiernaIzquierda();
-dibujarPiernaDerecha();
-dibujarBrazoIzquierdo();
-dibujarBrazoDerecho();
-*/

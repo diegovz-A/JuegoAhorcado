@@ -25,8 +25,20 @@ function eliminarCuadros(){
     }
 }
 
+function GanasPierdes(contenido,mensaje,opcionGanasPierdes){
+    mensaje.classList.add("ganasPierdes");
+    if (opcionGanasPierdes == 1){
+        mensaje.innerText = "Felicidades! Ganaste";
+    }
+    else if (opcionGanasPierdes == 2){
+        mensaje.innerText = "Que mal, perdiste";
+    }
+    contenido.appendChild(mensaje);
+}
+
 //funcion que crea un boton para volver a jugar
-function reiniciar(continua){
+function reiniciar(continua,opcionGanasPierdes){
+    var mensaje = document.createElement("h2");
     var reiniciar = document.createElement("button");
     var contenido = document.querySelector(".contenido");
     var contenedor = document.querySelector(".contenedor");
@@ -34,13 +46,18 @@ function reiniciar(continua){
     reiniciar.id = "btn-jugar";
     reiniciar.innerText = "Volver a jugar";
     contenido.appendChild(reiniciar);
+    GanasPierdes(contenido,mensaje,opcionGanasPierdes);
     contadorCorrectas = 0;
     contadorIncorrectas = 0;
     contenedorCorrectas = "";
     contenedorErroneas = "";
     arregloLetrasPalabra = [];
     contenedor.classList.add("deshabilitarContenido");
+
     reiniciar.addEventListener("click",function(){
+
+        contenido.removeChild(mensaje);
+
         if(continua){
             reiniciarPantalla(contenido,contenedor,reiniciar);
         }
@@ -58,6 +75,7 @@ function reiniciar(continua){
                 }
             //}
         }
+        
     });
 
 }
@@ -155,7 +173,7 @@ function validacion(){
         var letraIngresada = event.key;
         var Caracteres = /[A-ZÑ]/g;
 
-        if (letraIngresada.match(Caracteres) == null || letraIngresada.length > 1){//null significa que no encontro ninguna coincidencia Y se verifica el largo por los casos que no son letras como el "shif", etc.
+        if (letraIngresada.match(Caracteres) == null || letraIngresada.length > 1){//null significa que no encontro ninguna coincidencia Y se verifica el largo por los casos que no son letras como el "shift", etc.
             console.log("Sólo letras mayúsculas");
         }
         else{
@@ -193,26 +211,25 @@ function validacion(){
         }
         if(contadorCorrectas == palabraAleatoria.length && contadorIncorrectas < 7){
             if(contadorCorrectas > 0){
-                console.log("Felicidades! Ganaste");
                 if(arregloIndicesAleatorios.length == numeroPalabras){
                     continua = false;
-                    reiniciar(continua);
+                    reiniciar(continua,1);
                 }
                 else{
                     continua = true;
-                    reiniciar(continua);
+                    reiniciar(continua,1);
                 }
             }
         }
         else if(contadorIncorrectas == 7){
-            console.log("Que mal, perdiste");
+
             if(arregloIndicesAleatorios.length == numeroPalabras){
                 continua = false;
-                reiniciar(continua);
+                reiniciar(continua,2);
             }
             else{
                 continua = true;
-                reiniciar(continua);
+                reiniciar(continua,2);
             }
         }
 

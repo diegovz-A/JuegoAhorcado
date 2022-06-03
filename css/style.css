@@ -1,11 +1,11 @@
 body{
     font-family: 'Saira Condensed', sans-serif;
     width: 0 auto;
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 header{
     width: 100%;
     text-align: center;
-    
 }
 .Titulo-principal{
     font-size: 3em;
@@ -16,25 +16,14 @@ header{
     margin:0 auto;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    height: 100vh;
 }
-
 .contenedorLetras{
-    position: relative;
     display: flex;
-    background-color: red;
-    height: fit-content;
     padding-bottom: 0.5em;
     justify-content: center;
-    flex-wrap: wrap;
 }
 .contenedorErrores{
-    position: relative;
     display: flex;
-    background-color: blue;
-    height: 3em;
-    flex-direction: column;
     align-items: center;
     justify-content:center;
 }
@@ -43,11 +32,10 @@ header{
     letter-spacing: 1em;
 }
 .tablero{
-    position: relative;
-    box-sizing: border-box;
     width: 100%;
-    height:80%;
-    background-color: cornflowerblue;
+    height: 80%;
+    max-width: 1200;
+    max-height: 800;
 }
 
 .letra, .letra:focus{   
@@ -64,13 +52,7 @@ header{
 .ocultar{
     display: none;
 }
-.ocultar-reinicio{
-    background-color: darkorange;
-    width: 100%;
-    height: 100%;
-}
 .contenedorBtnsInicio{
-    background-color:cadetblue;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,14 +69,30 @@ header{
     font-size: 1.5em;
     font-weight: bold;
 }
+.contenido{
+    width: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tableroCompleto{
+    width: 0 auto;
+}
+.ganasPierdes{
+    position: absolute;
+    font-size: 2em;
+    margin-bottom: 4em;
+}
+
 .btn-reinicio{
     position:  absolute;
+    flex: auto;
     height: 2em;
     font-size: 1.5em;
     border-radius: 10px;
     background-color: blueviolet;
-    top: 50%;
-    left:calc(50% - (2em));
+
 }
 .btn-agregar-index{
     display: flex;
