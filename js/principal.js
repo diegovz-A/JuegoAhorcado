@@ -168,11 +168,17 @@ function crearCuadro(indice){
 function validacion(){
     var agregarErrores = document.querySelector(".contenedorErrores");
     var letrasErroneas = document.createElement("span");
+    var inputDispositivo = document.querySelector(".input-dispositivo");
+    var contenido = document.querySelector(".contenido");
     var continua = true;
+
     window.addEventListener("keyup",function(event){
         var letraIngresada = event.key;
         var Caracteres = /[A-ZÑ]/g;
-
+        if (window.matchMedia("max-width:480px")){
+            inputDispositivo.value = "";
+            contenido.setAttribute("style","width:50%");
+        }
         if (letraIngresada.match(Caracteres) == null || letraIngresada.length > 1){//null significa que no encontro ninguna coincidencia Y se verifica el largo por los casos que no son letras como el "shift", etc.
             console.log("Sólo letras mayúsculas");
         }
