@@ -21,11 +21,13 @@ header{
     display: flex;
     padding-bottom: 0.5em;
     justify-content: center;
+    background-color: red;
 }
 .contenedorErrores{
     display: flex;
     align-items: center;
     justify-content:center;
+    background-color: blue;
 }
 .contenedorErrores span{
     font-size: 2em;
@@ -36,6 +38,7 @@ header{
     height: 80%;
     max-width: 1200;
     max-height: 800;
+    background-color: aquamarine;
 }
 
 .letra, .letra:focus{   
@@ -111,4 +114,18 @@ header{
 .deshabilitarContenido{
     pointer-events: none;
     opacity: 0.3;
+}
+.input-dispositivo{
+    display: none;
+}
+
+@media screen and (max-width:480px){
+    .input-dispositivo{
+        display: flex;
+        margin: 0 auto;
+        width: 1em;
+        border: 4px solid seagreen;
+        background:content-box;
+    }
+
 }
