@@ -13,9 +13,16 @@ var contadorCorrectas = 0;
 var contadorIncorrectas = 0;
 var contadorIndices = 0;
 var numeroPalabras;
+var continua = true;
+var agregarErrores = document.querySelector(".contenedorErrores");
+var letrasErroneas = document.createElement("span");
+var movil = window.matchMedia("(max-width:480px)");
+
+
+
 
 function eliminarCuadros(){
-    var contenedorErrores =  document.querySelector(".contenedorErrores");
+    var contenedorErrores = document.querySelector(".contenedorErrores");
     for (var i = 0; i < palabraAleatoria.length; i++){
         var cuadro = document.getElementById(i+1);
         document.querySelector(".contenedorLetras").removeChild(cuadro);
@@ -165,82 +172,129 @@ function crearCuadro(indice){
     return cuadro;
 }
 
-function validacion(){
-    var agregarErrores = document.querySelector(".contenedorErrores");
-    var letrasErroneas = document.createElement("span");
-    var inputDispositivo = document.querySelector(".input-dispositivo");
-    var contenido = document.querySelector(".contenido");
-    var continua = true;
+function crearteclas(){
+    var teclado1 = document.querySelector(".teclado1");
+    var teclado2 = document.querySelector(".teclado2");
+    var teclado3 = document.querySelector(".teclado3");
+    
+    var teclas = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Ñ","Z","X","C","V","B","N","M"];
+    for (var i = 0;i < 27; i++){
+        var tecla = document.createElement("button");
+        tecla.innerHTML = teclas[i];
+        tecla.classList.add("teclas");
+        tecla.id = "tecla " + i;
+        if(i < 10){
+           teclado1.appendChild(tecla);
+        }
+        else if(i >= 10 && i < 20){
+            teclado2.appendChild(tecla);
+        }
+        else{
+            teclado3.appendChild(tecla);
+        }
+    }
+}
+
+function resultadoJuego(){
+
+    if(contadorCorrectas == palabraAleatoria.length && contadorIncorrectas < 7){
+        if(contadorCorrectas > 0){
+            if(arregloIndicesAleatorios.length == numeroPalabras){
+                continua = false;
+                reiniciar(continua,1);
+            }
+            else{
+                continua = true;
+                reiniciar(continua,1);
+            }
+        }
+    }
+    else if(contadorIncorrectas == 7){
+
+        if(arregloIndicesAleatorios.length == numeroPalabras){
+            continua = false;
+            reiniciar(continua,2);
+        }
+        else{
+            continua = true;
+            reiniciar(continua,2);
+        }
+    }
+}
+
+function validar(letraIngresada){
+
+    if (palabraAleatoria.indexOf(letraIngresada) == -1){//Se verifica que la letra no esta en la palabra elegida
+        if(contenedorErroneas.indexOf(letraIngresada) == -1){//Revisa que la letra ingresa no este en el conjunto de letra erroneas y la agrega 
+            console.log("Letra Errónea");
+            contenedorErroneas += letraIngresada;
+            letrasErroneas.innerHTML = contenedorErroneas;
+            agregarErrores.appendChild(letrasErroneas);
+            contadorIncorrectas++;
+            dibujoenpantalla(contadorIncorrectas);
+        }
+        else{
+            alert("letra erronea repetida");
+        }
+    }
+    else{
+        if(contenedorCorrectas.indexOf(letraIngresada) == -1){
+            var coincidencias = arregloLetrasPalabra.filter(objetoLetra => objetoLetra.letra == letraIngresada);
+
+            for (var i = 0; i < coincidencias.length; i++ ){
+                document.getElementById(coincidencias[i].indice).value = coincidencias[i].letra;
+                contenedorCorrectas += letraIngresada
+                //event.preventDefault();
+            }
+            contadorCorrectas += coincidencias.length;
+            console.log(contenedorCorrectas);
+            console.log(contadorCorrectas);
+            
+        }
+        else{
+            console.log ("Letra correcta repetida");
+        }
+    } 
+}
+
+
+function tecladoEnPatantalla(){
+    if(movil.matches){
+        crearteclas();
+    }
+}
+
+
+function validacionMovil(){
+    var teclado = document.querySelector(".tecladoCompleto");
+    teclado.addEventListener("click",function(event){
+        validar(event.target.innerHTML); //este parametro captura la teclas presionada y obtiene el valor que tiene asignado
+        resultadoJuego();
+    });
+
+}
+
+function validacionDesktop(){
 
     window.addEventListener("keyup",function(event){
+
         var letraIngresada = event.key;
         var Caracteres = /[A-ZÑ]/g;
-        if (window.matchMedia("max-width:480px")){
-            inputDispositivo.value = "";
-            contenido.setAttribute("style","width:50%");
-        }
         if (letraIngresada.match(Caracteres) == null || letraIngresada.length > 1){//null significa que no encontro ninguna coincidencia Y se verifica el largo por los casos que no son letras como el "shift", etc.
             console.log("Sólo letras mayúsculas");
         }
         else{
-            if (palabraAleatoria.indexOf(letraIngresada) == -1){//Se verifica que la letra no esta en la palabra elegida
-                if(contenedorErroneas.indexOf(letraIngresada) == -1){//Revisa que la letra ingresa no este en el conjunto de letra erroneas y la agrega 
-                    console.log("Letra Errónea");
-                    contenedorErroneas += letraIngresada;
-                    letrasErroneas.innerHTML = contenedorErroneas;
-                    agregarErrores.appendChild(letrasErroneas);
-                    contadorIncorrectas++;
-                    dibujoenpantalla(contadorIncorrectas);
-                }
-                else{
-                    alert("letra erronea repetida");
-                }
-            }
-            else{
-                if(contenedorCorrectas.indexOf(letraIngresada) == -1){
-                    var coincidencias = arregloLetrasPalabra.filter(objetoLetra => objetoLetra.letra === letraIngresada);
-    
-                    for (var i = 0; i < coincidencias.length; i++ ){
-                        document.getElementById(coincidencias[i].indice).value = coincidencias[i].letra;
-                        contenedorCorrectas += letraIngresada
-                        event.preventDefault();
-                    }
-                    contadorCorrectas += coincidencias.length;
-                    console.log(contenedorCorrectas);
-                    console.log(contadorCorrectas);
-                    
-                }
-                else{
-                    console.log ("Letra correcta repetida");
-                }
-            }   
+            validar(letraIngresada);
         }
-        if(contadorCorrectas == palabraAleatoria.length && contadorIncorrectas < 7){
-            if(contadorCorrectas > 0){
-                if(arregloIndicesAleatorios.length == numeroPalabras){
-                    continua = false;
-                    reiniciar(continua,1);
-                }
-                else{
-                    continua = true;
-                    reiniciar(continua,1);
-                }
-            }
-        }
-        else if(contadorIncorrectas == 7){
-
-            if(arregloIndicesAleatorios.length == numeroPalabras){
-                continua = false;
-                reiniciar(continua,2);
-            }
-            else{
-                continua = true;
-                reiniciar(continua,2);
-            }
-        }
+        resultadoJuego();
 
     });
     
 }
 mostrarEnPantalla();
-validacion();
+tecladoEnPatantalla();
+validacionDesktop();
+validacionMovil();
+
+
+
