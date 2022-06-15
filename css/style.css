@@ -1,77 +1,46 @@
 body{
     font-family: 'Saira Condensed', sans-serif;
     width: 0 auto;
-    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background: #f6e7d1;
 }
+
+/*Página inicial*/
+
+.contenedorBtnsInicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20vh 25vw 20vh 25vw;
+    height: 60vh;
+}
+.btn-index{
+    font-size: 1.5em;
+    width: 50vw;
+    white-space: normal;
+    padding: 1em;
+    border-radius: 10px;
+    border-style:hidden;
+    color: #efefef;
+    background-color: #010101;
+}
+.btn-index:hover{
+    transform: scale(1.1);
+    background-color: #010101;
+    color: #97b72b;
+}
+.btn-index-border{
+    border-left: 5px solid #97b72b;
+    border-right: 5px solid #97b72b;
+}
+
+/*Pagina del juego*/
 header{
     width: 100%;
     text-align: center;
 }
 .Titulo-principal{
     font-size: 3em;
-}
-
-.contenedor{
-    position: relative;
-    margin:0 auto;
-    display: flex;
-    flex-direction: column;
-}
-.contenedorLetras{
-    display: flex;
-    padding-bottom: 0.5em;
-    justify-content: center;
-    background-color: red;
-}
-.contenedorErrores{
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    background-color: blue;
-    height: 2em;
-}
-.contenedorErrores span{
-    font-size: 2em;
-    letter-spacing: 1em;
-}
-.tablero{
-    width: 100%;
-    height: 80%;
-    max-width: 1200;
-    max-height: 800;
-    background-color: aquamarine;
-}
-
-.letra, .letra:focus{   
-    width: 1em;
-    height: 30px;
-    border-style: none none solid none;
-    border-bottom:2px solid blue;
-    background: none;
-    font-size: 25px;
-    text-align: center;
-    margin-right: 1em;
-}
-
-.ocultar{
-    display: none;
-}
-.contenedorBtnsInicio{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-}
-.btn-inicio{
-    width: 40vw;
-    height: 20vh;
-    margin-bottom: 20vh;
-    border-radius: 20px;
-    background-color:cornsilk;
-    font-size: 1.5em;
-    font-weight: bold;
 }
 .contenido{
     margin: 0 auto;
@@ -81,71 +50,255 @@ header{
     align-items: center;
     width: 100vw;
 }
-.tableroCompleto{
-    width: 0 auto;
-}
-.ganasPierdes{
-    position: absolute;
-    font-size: 2em;
-    margin-bottom: 4em;
-}
-
 .btn-reinicio{
-    position:  absolute;
-    flex: auto;
+    display: flex;
     height: 2em;
     font-size: 1.5em;
     border-radius: 10px;
-    background-color: blueviolet;
-
-}
-.btn-agregar-index{
-    display: flex;
+    background:linear-gradient(#c7cac9,#efefef);
     justify-content: center;
     align-items: center;
-    margin: 1.5em auto;
-    border: none solid 2px;
-    background-color: greenyellow;
 }
-#nuevaPalabra{
-    width: 40vw;
-    height: 10vh;
-    border-radius: 20px;
-    font-size: 1em;
+.posAbs-flex-colum{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
 }
 .deshabilitarContenido{
     pointer-events: none;
     opacity: 0.3;
 }
+.tableroCompleto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tablero{
+    max-width: 1200;
+    max-height: 800;
+    width: 100%;
+    height:75%;
+    border-radius:20px;
+    border-bottom: 5px solid #010101;
+    background-color: #97b72b;
+    opacity: 0.7;
+}
+.contenedor-btns-juego{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.btn-juego{
+    border-radius: 10px;
+    text-align: center;
+    white-space: normal;
+    margin:1.5em;
+    padding: 1em;
+    font-size:1em;
+    border: none;
+    background-color:#97b72b;
+    color:#010101;
+}
+.contenedor{
+    display: flex;
+    position: relative;
+    margin:0 auto;
+    flex-direction: column;
+    height: 100vh;
+}
+.contenedorMensajes{
+    display: flex;
+    justify-content: center;
+    height: 5%;
+    margin-bottom: 4px;
+}
+.icono{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.contenedorLetras{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0.5em;
+    justify-content: center;
+    height: 10%;
+}
+.letra, .letra:focus{   
+    display: flex;
+    background: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-style: none none solid none;
+    border-bottom:3px solid #010101;
+    font-size: 1.5em;
+    font-weight: bold;
+    color:#010101;
+    text-align: center;
+    margin-right: 1em;
+}
+.contenedorErrores{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 10%;
+}
+.contenedorErrores span{
+    font-size: 2em;
+    letter-spacing: 1em;
+}
+.ganasPierdes{
+    display: flex;
+    font-size: 2em;
+}
 .teclas{
     display: none;
 }
+.piePagina{
+    display: flex;
+    margin:0 auto;
+    width: 100%;
+    padding: 1em 0;
+    background-color:black;
+    align-items: center;
+}
+.textoPiePagina{
+    display: flex;
+    width: 70%;
+    margin-left: 30%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    justify-content: center;
+}
+.contacto{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
 
-@media screen and (max-width:480px){
-    .tableroCompleto{
-        width: auto;
-        height: auto;
+/*Pagina agregado palabras*/
+
+.btn-width40vw-fonS1_5-bold{
+    width: 50vw;
+    font-size: 1.5em;
+    font-weight: bold;
+    white-space: normal;
+    padding: 0.5em;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+@media screen and (max-width:575px){
+    body{
+        touch-action: manipulation;
     }
-    .input-dispositivo{
-        display: flex;
-        margin: 0 auto;
-        width: 1em;
-        border: 4px solid seagreen;
-        background:content-box;
+    .letra{
+        font-size: 1em;
+    }   
+    .btn-verde{
+        color: rgb(132, 218, 132);
+    }
+    .btn-rojo{
+        color: rgb(231, 122, 122);
+    }
+    .btn-width40vw-fonS1_5-bold{
+        font-size: 1.3em;
+    }
+    .btn-index{
+        padding: 1.5em;
     }
     .tecladoCompleto {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-top: 2em;
+        margin: 2em auto;
+    }
+    .contenedor{
+        height: 100%;
+    }
+    .teclados{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+    #teclado3 .teclas{
+        display: flex;
+        width: 14.28%;
     }
     .teclas{
-        display: inline-block;
-        background-color: grey;
-        border-radius: 5px;
+        display: flex;
+        background-color:#97b72b;
+        color: #efefef;
         font-size: 1em;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 5px;
+        padding: 1em;
+        box-shadow:2px 3px;
+        border-color:#010101;
         font-weight: bold;
-        margin: 3px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media(min-width: 768px) and (max-width: 1024px){
+    body{
+        touch-action: manipulation;
+    }
+    .letra{
+        font-size: 2em;
+    }
+
+    .btn-verde{
+        color: rgb(132, 218, 132);
+    }
+    .btn-rojo{
+        color: rgb(231, 122, 122);
+    }
+    .btn-width40vw-fonS1_5-bold{
+        font-size: 1.3em;
+    }
+    .btn-index{
+        padding: 1.5em;
+    }
+    .tecladoCompleto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 2em auto;
+    }
+    .contenedor{
+        height: 100%;
+    }
+    .teclados{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+    #teclado3 .teclas{
+        display: flex;
+        width: 14.28%;
+    }
+    .teclas{
+        display: flex;
+        background-color:#97b72b;
+        color: #efefef;
+        font-size: 1em;
+        width: 2em;
+        height: 2em;
+        border-radius: 5px;
+        padding: 1.5em;
+        box-shadow:2px 3px;
+        border-color:#010101;
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
     }
 }

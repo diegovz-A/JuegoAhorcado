@@ -9,9 +9,7 @@ else{
     conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
 }
 
-
-console.log(conjuntoDePalabras);
-
+//Función encargada de verificar que el formato de la palabra nueva a ingresar sea correcto y agregarla al arreglo de palabras
 function agregarPalabra(){
     let palabraNueva = document.getElementById("nuevaPalabra").value;
     var Caracteres = /[A-ZÑ]/g;
@@ -20,7 +18,7 @@ function agregarPalabra(){
     const indice1 = palabraNueva.length;
 
     if(arregloCoincidencias == null || indice1 != arregloCoincidencias.length){
-        alert("Palabra inválida, Favor utilizar mayúsculas y sin caracteres especiales");
+        mensajes(0);
     }
 
     else if (palabraNueva.length > 1 && indice1 == arregloCoincidencias.length){
@@ -31,22 +29,22 @@ function agregarPalabra(){
 
             conjuntoDePalabras = localStorage.getItem("arregloPalabras");
             conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
-            //console.log(conjuntoDePalabras);
-            console.log(conjuntoDePalabras);
 
         }
         else{
-            alert("Ésta palabra ya existe");
+            mensajes(2);
         }
     }
 }
 
+//Función que elimina las palabras agregadas por el usuario
 function borrarPalabras(){
     localStorage.clear();
-    location.reload();
-    alert("Palabras Borradas");
 }
 
-
 document.getElementById("btn-nuevaPalabra").onclick = agregarPalabra
-document.getElementById("borrarPalabras").onclick = borrarPalabras;
+document.getElementById("borrarPalabras").onclick =
+function(){
+    borrarPalabras();
+    mensajes(1);
+} 

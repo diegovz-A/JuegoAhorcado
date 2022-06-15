@@ -8,18 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300&display=swap" rel="stylesheet">
-    <title>Document</title>
+
+    <title>Juego del ahorcado</title>
 </head>
 <body>
     <main>
         <div class="contenedorBtnsInicio">
             <label for="btn-jugar"></label>
-            <a href="index.html"><input type="button" class="btn-inicio" id="btn-jugar" value="Ir a jugar"></a>
-            <input type="text" name="nuevaPalabra" id="nuevaPalabra" placeholder="Ingrese palabra que desea agregar" >
-            <input class="btn-inicio" id="btn-nuevaPalabra" type="button" value="Agregar Nueva palabra">
-            <input class="btn-inicio" id="borrarPalabras" type="button" value="Borrar palabras agregadas">
+            <a href="inicio.html"><input type="button" class="btn-index" id="btn-jugar" value="Ir a jugar"></a>
+            <input type="text" class="btn-width40vw-fonS1_5-bold" name="nuevaPalabra" id="nuevaPalabra" placeholder="Ingrese palabra" >
+            <div class="contenedorMensajes"></div>
+            <input class="btn-index btn-verde" id="btn-nuevaPalabra" type="button" value="Insertar palabra">
+            <input class="btn-index btn-rojo" id="borrarPalabras" type="button" value="Eliminar agregadas">
         </div>
     </main>
     <script src="js/AgregarPalabra.js"></script>
+    <script src="js/mensajesErrores.js"></script>
 </body>
 </html>

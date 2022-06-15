@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,38 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300&display=swap" rel="stylesheet">
-    <title>Juego del Ahorcado</title>
+    <title>Juego Ahorcado</title>
 </head>
 <body>
-    <header>
-        <h1 class="Titulo-principal">Juego del Ahorcado</h1>
-    </header>
     <main>
-        <div class="contenido">
-            <section class="tableroCompleto">
-                <div>
-                    <a href="./agregarPalabra.html"><button class="btn-agregar-index" id="btn-nuevaPalabra">Agregar palabras</button></a>
-                </div>
-                <div class="contenedor">
-                    <canvas class="tablero" width="1200" height="800"></canvas>
-                    <div class="contenedorLetras"></div>
-                    <div class="contenedorErrores"></div>
-                </div>
-                <div class="tecladoCompleto">
-                    <div class="teclado1"></div>
-                    <div class="teclado2"></div>
-                    <div class="teclado3"></div>
-                </div>
-
-            </section>
+        <div class="contenedorBtnsInicio">
+            <a href="inicio.html"><input class="btn-index btn-index-border" id="btn-jugar" type="button" value="JUGAR">
+            </a>
+            <a href="agregarpalabra.html"><input class="btn-index btn-index-border" type="button" value="AGREGAR PALABRA">
+            </a>
         </div>
     </main>
-    <footer>
-
-    </footer>
-    <script src="js/AgregarPalabra.js"></script>
-    <script src="js/principal.js"></script>
-    <script src="js/dibujarEnTablero.js"></script>
 </body>
 </html>
-

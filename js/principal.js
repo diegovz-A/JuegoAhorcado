@@ -1,101 +1,20 @@
 
 var botonJugar = document.querySelector("#btn-jugar");
 
+//Se recuperan los datos almacenados en el localStorage
 conjuntoDePalabras = localStorage.getItem("arregloPalabras");
 conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
 
 var palabraAleatoria = "";
-var arregloLetrasPalabra = [];
 var arregloIndicesAleatorios = [];
-var contenedorErroneas = "";
-var contenedorCorrectas = "";
-var contadorCorrectas = 0;
-var contadorIncorrectas = 0;
-var contadorIndices = 0;
 var numeroPalabras;
-var continua = true;
-var agregarErrores = document.querySelector(".contenedorErrores");
-var letrasErroneas = document.createElement("span");
-var movil = window.matchMedia("(max-width:480px)");
 
+var movil = window.matchMedia("(max-width:575px)");
+var tablet = window.matchMedia("(min-width:768px)")
 
-
-
-function eliminarCuadros(){
-    var contenedorErrores = document.querySelector(".contenedorErrores");
-    for (var i = 0; i < palabraAleatoria.length; i++){
-        var cuadro = document.getElementById(i+1);
-        document.querySelector(".contenedorLetras").removeChild(cuadro);
-    }
-    if(contenedorErrores.hasChildNodes()){
-        contenedorErrores.removeChild(document.querySelector("span"));
-    }
-}
-
-function GanasPierdes(contenido,mensaje,opcionGanasPierdes){
-    mensaje.classList.add("ganasPierdes");
-    if (opcionGanasPierdes == 1){
-        mensaje.innerText = "Felicidades! Ganaste";
-    }
-    else if (opcionGanasPierdes == 2){
-        mensaje.innerText = "Que mal, perdiste";
-    }
-    contenido.appendChild(mensaje);
-}
-
-//funcion que crea un boton para volver a jugar
-function reiniciar(continua,opcionGanasPierdes){
-    var mensaje = document.createElement("h2");
-    var reiniciar = document.createElement("button");
-    var contenido = document.querySelector(".contenido");
-    var contenedor = document.querySelector(".contenedor");
-    reiniciar.classList.add("btn-reinicio");
-    reiniciar.id = "btn-jugar";
-    reiniciar.innerText = "Volver a jugar";
-    contenido.appendChild(reiniciar);
-    GanasPierdes(contenido,mensaje,opcionGanasPierdes);
-    contadorCorrectas = 0;
-    contadorIncorrectas = 0;
-    contenedorCorrectas = "";
-    contenedorErroneas = "";
-    arregloLetrasPalabra = [];
-    contenedor.classList.add("deshabilitarContenido");
-
-    reiniciar.addEventListener("click",function(){
-
-        contenido.removeChild(mensaje);
-
-        if(continua){
-            reiniciarPantalla(contenido,contenedor,reiniciar);
-        }
-        else{
-            //if(verificador == false ){
-                var respuesta = prompt("Quieres intentar todo denuevo? S/N");
-        
-                if (respuesta == "S"){
-                    arregloIndicesAleatorios = [];
-                    reiniciarPantalla(contenido,contenedor,reiniciar);
-    
-                }
-                else if (respuesta == "N"){
-                    window.open("./inicio.html","_self");
-                }
-            //}
-        }
-        
-    });
-
-}
-function reiniciarPantalla(contenido,contenedor,reiniciar){
-    dibujoenpantalla(0);
-    eliminarCuadros();
-    mostrarEnPantalla();
-    contenido.removeChild(reiniciar);
-    contenedor.classList.remove("deshabilitarContenido");
-}
 //Funcion que debe crear el conjunto de campos de texto para una palabra al azar
 function mostrarEnPantalla(){
-    
+    //En caso de que nos e agregue nada las palabras por defecto son las del conjuntoDePalabras
     if(localStorage.length == 0){
         var conjuntoDePalabras = ["ALURA","HOLA","MUNDO"];
     }
@@ -103,9 +22,8 @@ function mostrarEnPantalla(){
         var conjuntoDePalabras = localStorage.getItem("arregloPalabras");
         conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
     }
-    numeroPalabras = conjuntoDePalabras.length
 
-    console.log(conjuntoDePalabras);
+    numeroPalabras = conjuntoDePalabras.length;
 
     var sigue = true;
     var verificador = true;
@@ -133,68 +51,29 @@ function mostrarEnPantalla(){
             indiceAleatorio = Math.round(Math.random()*conjuntoDePalabras.length);
         }
     }
-    
-    console.log(indiceAleatorio);
 
     //crea el campo de texto en caso que no se utilizaran todas las palabras
     if(arregloIndicesAleatorios.length <= conjuntoDePalabras.length){
         palabraAleatoria = conjuntoDePalabras[indiceAleatorio-1];//Palabra que salio segun el numero aleatorio conseguido en "indiceAleatorio"
         crearCampoTexto(palabraAleatoria.length);
-        if(arregloIndicesAleatorios.length == conjuntoDePalabras.length){
-            console.log("Ultima palabra");
-        }
     }
-
-
 }
 
-function crearCampoTexto(cantidad){ 
-    var agregarPalabra = document.querySelector(".contenedorLetras");
-    var objetoLetra;
-    for (var i = 0; i < cantidad; i++){
-        agregarPalabra.appendChild(crearCuadro(i+1));
-        objetoLetra = {
-            "letra" : palabraAleatoria[i],
-            "indice" : i+1
-        }
-        arregloLetrasPalabra.push(objetoLetra);
-    } 
-    console.log(arregloLetrasPalabra);
-}
+//Función que muestra si ganaste o perdiste el juego
+function GanasPierdes(contenedorReinicio,mensaje,opcionGanasPierdes){
 
-function crearCuadro(indice){
-    var cuadro = document.createElement("input");
-    cuadro.classList.add("letra");
-    cuadro.maxLength = 1;//Forma de asignar el atributo maxLength
-    cuadro.id = indice;
-    cuadro.disabled = true;
-
-    return cuadro;
-}
-
-function crearteclas(){
-    var teclado1 = document.querySelector(".teclado1");
-    var teclado2 = document.querySelector(".teclado2");
-    var teclado3 = document.querySelector(".teclado3");
+    mensaje.classList.add("ganasPierdes");
     
-    var teclas = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Ñ","Z","X","C","V","B","N","M"];
-    for (var i = 0;i < 27; i++){
-        var tecla = document.createElement("button");
-        tecla.innerHTML = teclas[i];
-        tecla.classList.add("teclas");
-        tecla.id = "tecla " + i;
-        if(i < 10){
-           teclado1.appendChild(tecla);
-        }
-        else if(i >= 10 && i < 20){
-            teclado2.appendChild(tecla);
-        }
-        else{
-            teclado3.appendChild(tecla);
-        }
+    if (opcionGanasPierdes == 1){
+        mensaje.innerText = "Felicidades! Ganaste";
     }
+    else if (opcionGanasPierdes == 2){
+        mensaje.innerText = "Que mal, perdiste";
+    }
+    contenedorReinicio.appendChild(mensaje);
 }
 
+//Función encargada de verificar si se continua el juego o si se debe reiniciar, enviando el resultado a la funcion reiniciar
 function resultadoJuego(){
 
     if(contadorCorrectas == palabraAleatoria.length && contadorIncorrectas < 7){
@@ -222,79 +101,17 @@ function resultadoJuego(){
     }
 }
 
-function validar(letraIngresada){
-
-    if (palabraAleatoria.indexOf(letraIngresada) == -1){//Se verifica que la letra no esta en la palabra elegida
-        if(contenedorErroneas.indexOf(letraIngresada) == -1){//Revisa que la letra ingresa no este en el conjunto de letra erroneas y la agrega 
-            console.log("Letra Errónea");
-            contenedorErroneas += letraIngresada;
-            letrasErroneas.innerHTML = contenedorErroneas;
-            agregarErrores.appendChild(letrasErroneas);
-            contadorIncorrectas++;
-            dibujoenpantalla(contadorIncorrectas);
-        }
-        else{
-            alert("letra erronea repetida");
-        }
-    }
-    else{
-        if(contenedorCorrectas.indexOf(letraIngresada) == -1){
-            var coincidencias = arregloLetrasPalabra.filter(objetoLetra => objetoLetra.letra == letraIngresada);
-
-            for (var i = 0; i < coincidencias.length; i++ ){
-                document.getElementById(coincidencias[i].indice).value = coincidencias[i].letra;
-                contenedorCorrectas += letraIngresada
-                //event.preventDefault();
-            }
-            contadorCorrectas += coincidencias.length;
-            console.log(contenedorCorrectas);
-            console.log(contadorCorrectas);
-            
-        }
-        else{
-            console.log ("Letra correcta repetida");
-        }
-    } 
-}
-
-
+//Función que muestra los teclados virtuales en caso de detectar que es un dispositivo movil segun los parametros indicados por las resoluciones
 function tecladoEnPatantalla(){
     if(movil.matches){
         crearteclas();
     }
+    else if(tablet.matches){
+        crearteclas();
+    }
 }
 
-
-function validacionMovil(){
-    var teclado = document.querySelector(".tecladoCompleto");
-    teclado.addEventListener("click",function(event){
-        validar(event.target.innerHTML); //este parametro captura la teclas presionada y obtiene el valor que tiene asignado
-        resultadoJuego();
-    });
-
-}
-
-function validacionDesktop(){
-
-    window.addEventListener("keyup",function(event){
-
-        var letraIngresada = event.key;
-        var Caracteres = /[A-ZÑ]/g;
-        if (letraIngresada.match(Caracteres) == null || letraIngresada.length > 1){//null significa que no encontro ninguna coincidencia Y se verifica el largo por los casos que no son letras como el "shift", etc.
-            console.log("Sólo letras mayúsculas");
-        }
-        else{
-            validar(letraIngresada);
-        }
-        resultadoJuego();
-
-    });
-    
-}
 mostrarEnPantalla();
 tecladoEnPatantalla();
 validacionDesktop();
-validacionMovil();
-
-
-
+validacionDispositivos();
