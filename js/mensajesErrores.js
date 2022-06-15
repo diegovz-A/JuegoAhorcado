@@ -1,5 +1,5 @@
 
-var arregloMensajes = ["Sólo se admiten letras mayúsculas","Palabras eliminadas exitosamente","Ésta palabra ya existe"];
+var arregloMensajes = ["Sólo se admiten letras mayúsculas","Palabras eliminadas exitosamente","Esta palabra ya existe"];
 
 //Función que distribuye y muestra los mensajes de "error" que se pueden presentar 
 function mensajes(n_mensaje){

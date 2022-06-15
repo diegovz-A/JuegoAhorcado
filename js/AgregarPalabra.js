@@ -1,16 +1,22 @@
 
 //Estos condicionales verifican si el ya hay palabras guardadas en localstorage
 
-if(localStorage.length == 0){
-    var conjuntoDePalabras = ["ALURA","HOLA","MUNDO"];
-}
-else{
-    var conjuntoDePalabras = localStorage.getItem("arregloPalabras");
-    conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
-}
+
+var conjuntoDePalabras = localStorage.getItem("arregloPalabras");
+conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
+
 
 //Función encargada de verificar que el formato de la palabra nueva a ingresar sea correcto y agregarla al arreglo de palabras
 function agregarPalabra(){
+
+    if(localStorage.length == 0){
+        var conjuntoDePalabras = ["ALURA","HOLA","MUNDO"];
+    }
+    else{
+        var conjuntoDePalabras = localStorage.getItem("arregloPalabras");
+        conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
+    }
+
     let palabraNueva = document.getElementById("nuevaPalabra").value;
     var Caracteres = /[A-ZÑ]/g;
     var arregloCoincidencias = palabraNueva.match(Caracteres);
@@ -29,7 +35,6 @@ function agregarPalabra(){
 
             conjuntoDePalabras = localStorage.getItem("arregloPalabras");
             conjuntoDePalabras = JSON.parse(conjuntoDePalabras);
-
         }
         else{
             mensajes(2);
@@ -47,4 +52,5 @@ document.getElementById("borrarPalabras").onclick =
 function(){
     borrarPalabras();
     mensajes(1);
+
 } 
