@@ -60,17 +60,22 @@ function mostrarEnPantalla(){
 }
 
 //Función que muestra si ganaste o perdiste el juego
-function GanasPierdes(contenedorReinicio,mensaje,opcionGanasPierdes){
+function GanasPierdes(contenedorReinicio,mensaje,opcionGanasPierdes,palabra){
 
     mensaje.classList.add("ganasPierdes");
     
     if (opcionGanasPierdes == 1){
         mensaje.innerText = "Felicidades! Ganaste";
+        contenedorReinicio.appendChild(mensaje);
     }
     else if (opcionGanasPierdes == 2){
+        palabra.innerText ="La palabra era: " + palabraAleatoria;
+        palabra.classList.add("palabraCorrecta");
         mensaje.innerText = "Que mal, perdiste";
+        contenedorReinicio.appendChild(mensaje);
+        contenedorReinicio.appendChild(palabra);
     }
-    contenedorReinicio.appendChild(mensaje);
+    
 }
 
 //Función encargada de verificar si se continua el juego o si se debe reiniciar, enviando el resultado a la funcion reiniciar

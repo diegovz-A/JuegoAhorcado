@@ -50,15 +50,6 @@ header{
     align-items: center;
     width: 100vw;
 }
-.btn-reinicio{
-    display: flex;
-    height: 2em;
-    font-size: 1.5em;
-    border-radius: 10px;
-    background:linear-gradient(#c7cac9,#efefef);
-    justify-content: center;
-    align-items: center;
-}
 .posAbs-flex-colum{
     position:absolute;
     display: flex;
@@ -150,7 +141,23 @@ header{
 }
 .ganasPierdes{
     display: flex;
+    font-weight: bold;
     font-size: 2em;
+    margin-bottom: 10px;
+}
+.palabraCorrecta{
+    display: flex;
+    font-size: 1.5em;
+}
+.btn-reinicio{
+    display: flex;
+    height: 2em;
+    font-size: 1.5em;
+    border-radius: 10px;
+    background:linear-gradient(#c7cac9,#efefef);
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 .teclas{
     display: none;
@@ -209,6 +216,7 @@ header{
     }
     .btn-index{
         padding: 1.5em;
+        margin: 0.5em 0;
     }
     .tecladoCompleto {
         display: flex;
@@ -262,9 +270,11 @@ header{
     }
     .btn-width40vw-fonS1_5-bold{
         font-size: 1.3em;
+       
     }
     .btn-index{
         padding: 1.5em;
+        margin:0.7em;
     }
     .tecladoCompleto {
         display: flex;

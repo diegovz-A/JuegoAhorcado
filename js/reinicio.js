@@ -6,6 +6,7 @@ function reiniciar(continua,opcionGanasPierdes){
     var contenido = document.querySelector(".contenido");
     var contenedor = document.querySelector(".contenedor");
     var mensaje = document.createElement("h2");
+    var palabra = document.createElement("h2");
     var reiniciar = document.createElement("button");
     var contenedorReinicio = document.createElement("div");
     contenedorReinicio.classList.add("posAbs-flex-colum");
@@ -13,7 +14,7 @@ function reiniciar(continua,opcionGanasPierdes){
     reiniciar.classList.add("btn-reinicio");
     reiniciar.id = "btn-jugar";
     reiniciar.innerText = "Volver a jugar";
-    GanasPierdes(contenedorReinicio,mensaje,opcionGanasPierdes);
+    GanasPierdes(contenedorReinicio,mensaje,opcionGanasPierdes,palabra);
     contenedorReinicio.appendChild(reiniciar);
     contadorCorrectas = 0;
     contadorIncorrectas = 0;
@@ -24,7 +25,9 @@ function reiniciar(continua,opcionGanasPierdes){
     reiniciar.addEventListener("click",function(){
 
         contenedorReinicio.removeChild(mensaje);  
-
+        if(palabra.innerText != ""){
+            contenedorReinicio.removeChild(palabra);
+        }
         //En caso de ser "true" sigue con la siguiente palabra, en caso que ya hayas terminado, te pregunta si seguir jugando o no
         if(continua){
             reiniciarPantalla(contenedorReinicio,contenedor,reiniciar);
@@ -45,7 +48,6 @@ function reiniciar(continua,opcionGanasPierdes){
             contenedorRespuesta.appendChild(pregunta);
             contenedorRespuesta.appendChild(si);
             contenedorRespuesta.appendChild(no);
-
             contenido.appendChild(contenedorRespuesta);
             
             si.onclick = function(){
